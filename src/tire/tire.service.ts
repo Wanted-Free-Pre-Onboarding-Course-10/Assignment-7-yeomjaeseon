@@ -7,11 +7,17 @@ import { TrimRepository } from '../trim/trim.repository';
 import { UserTrimRepository } from '../user-trim/user-trim.repository';
 import { UserNotFoundException } from '../exception/user_not_found_exception';
 import { HttpService } from '@nestjs/axios';
-import { EntireTireInfo, TireInfo } from '../type/type.definition';
+import {
+  EntireTireInfo,
+  ResponseTireInfo,
+  TireInfo,
+} from '../type/type.definition';
 import { Connection } from 'typeorm';
 import { NotNormalTireDataException } from '../exception/not_normal_tire_data_exception';
 import { TIRE_SAVE_SUCCESS_MSG } from '../message/message';
 import { RequestFailException } from '../exception/request_fail_exception';
+import { User } from '../user/user.entity';
+import { ResponseTireDto } from './dto/response.tire.dto';
 
 @Injectable()
 export class TireService {
@@ -71,6 +77,48 @@ export class TireService {
     }
 
     return TIRE_SAVE_SUCCESS_MSG;
+  }
+
+  async findTire(user: User): Promise<ResponseTireDto> {
+    const datas: ResponseTireInfo[] = [];
+
+    // user의 trimId 로 user_trim조회 - tire정보는 eager로 한꺼번에 조회
+    for (const userTrim of user.userTrims) {
+      const userTrims = await this.userTrimRepository.findUserTrimById(
+        userTrim.id,
+      );
+      const { trimId, tires } = userTrims[0].trim;
+
+      // response를 위한 data
+      datas.push({
+        trimId,
+        frontTire: {
+          width: tires[0].width,
+          aspectRatio: tires[0].aspectRatio,
+          wheelSize: tires[0].wheelSize,
+        },
+        rearTire: {
+          width: tires[1].width,
+          aspectRatio: tires[1].aspectRatio,
+          wheelSize: tires[1].wheelSize,
+        },
+      });
+    }
+
+    return this.makeResponseDto(user.username, datas);
+  }
+
+  // == reponse dto 만드는 메서드 == //
+  private makeResponseDto(
+    username: string,
+    datas: ResponseTireInfo[],
+  ): ResponseTireDto {
+    const responseData = {
+      user: username,
+      data: datas,
+    };
+
+    return responseData;
   }
 
   // == trim 정보 요청 api == //

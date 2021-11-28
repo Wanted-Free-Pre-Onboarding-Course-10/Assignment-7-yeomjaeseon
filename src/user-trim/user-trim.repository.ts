@@ -13,4 +13,10 @@ export class UserTrimRepository extends Repository<UserTrim> {
 
     await this.save(userTrim);
   }
+
+  async findUserTrimById(id: number) {
+    const userTrims = await this.find({ relations: ['trim'], where: { id } });
+
+    return userTrims;
+  }
 }
