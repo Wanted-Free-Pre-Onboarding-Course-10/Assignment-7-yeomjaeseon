@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { TireType } from './tiretype.enum';
+import { TireType } from './tire-type.enum';
 import { Trim } from '../trim/trim.entity';
 
 @Entity()
@@ -16,8 +16,8 @@ export class Tire {
   @Column({ name: 'wheel_size', nullable: false })
   wheelSize: number;
 
-  @Column()
-  type: TireType;
+  @Column({ enum: TireType })
+  type: number;
 
   @ManyToOne((type) => Trim, (trim) => trim.tires)
   trim: Trim;

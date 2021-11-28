@@ -6,7 +6,12 @@ import { TireModule } from './tire/tire.module';
 import { TrimModule } from './trim/trim.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), UserModule, TireModule, TrimModule],
+  imports: [
+    TypeOrmModule.forRoot(typeOrmConfig),
+    UserModule,
+    TireModule,
+    TrimModule,
+  ],
   controllers: [],
   providers: [],
 })
