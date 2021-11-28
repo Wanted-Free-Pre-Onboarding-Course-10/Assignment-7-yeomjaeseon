@@ -49,7 +49,6 @@ export class TireService {
         if (!foundTrim) {
           // 타이어 정보 요청
           const foundTireInfo = await this.findTireOfTrimInfo(trimId);
-
           this.logger.debug(JSON.stringify(foundTireInfo));
 
           //trim 저장
@@ -83,14 +82,14 @@ export class TireService {
         .toPromise();
     } catch (error) {
       this.logger.error(error);
-      throw new RequestFailException();
+      throw new RequestFailException(trimId);
     }
 
     const frontTire = trimInfo.data.spec.driving.frontTire.value;
     const rearTire = trimInfo.data.spec.driving.rearTire.value;
 
-    const frontTireResult = this.parseTireData(frontTire);
-    const rearTireResult = this.parseTireData(rearTire);
+    const frontTireResult = this.parseTireData(frontTire, trimId);
+    const rearTireResult = this.parseTireData(rearTire, trimId);
 
     return {
       frontTire: frontTireResult,
@@ -99,7 +98,7 @@ export class TireService {
   }
 
   // == tire 문자열 데이터 파싱 == //
-  private parseTireData(value: string): TireInfo {
+  private parseTireData(value: string, trimId: number): TireInfo {
     const splitResult = value.split(/[\/|R]/);
     const tireInfo = {
       width: parseInt(splitResult[0]),
@@ -111,7 +110,7 @@ export class TireService {
 
     // 타이어 데이터 형식이 정상이 아님
     if (!width || !aspectRatio || !wheelSize) {
-      throw new NotNormalTireDataException();
+      throw new NotNormalTireDataException(trimId);
     }
 
     return {

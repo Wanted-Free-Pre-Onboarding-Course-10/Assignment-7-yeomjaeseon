@@ -15,18 +15,18 @@ export const DTO_SAVE_TIRE_TYPE_MSG =
 
 // == 401 == //
 export const USER_PWD_INCORRECT_EXCEPTION_MSG = '비밀번호가 다릅니다.';
+export const LOGIN_NECESSARY_EXCEPTION_MSG = '로그인이 필요합니다.';
 
 // == 404 == //
 export const USER_NOT_FOUND_EXCEPTION_MSG = (username: string) =>
   `${username}의 유저가 존재하지 않습니다.`;
-export const LOGIN_NECESSARY_EXCEPTION_MSG = '로그인이 필요합니다.';
 
 // == 409 == //
 export const USER_DUPLICATE_EXCEPTION_MSG =
   '같은 이름의 회원이 이미 존재합니다.';
 
 //== 500 == //
-export const NOT_NORMAL_TIRE_DATA_EXCEPTION_MSG =
-  '타이어 데이터가 정상이 아닙니다.';
-export const REQUEST_FAIL_EXCEPTION_MSG =
-  '해당 아이디를 경로변수로 요청시 실패';
+export const NOT_NORMAL_TIRE_DATA_EXCEPTION_MSG = (id) =>
+  `${id} trim의 타이어 데이터가 정상이 아닙니다.`;
+export const REQUEST_FAIL_EXCEPTION_MSG = (id) =>
+  `${id} trim에 대한 데이터가 없어 요청 실패`;
