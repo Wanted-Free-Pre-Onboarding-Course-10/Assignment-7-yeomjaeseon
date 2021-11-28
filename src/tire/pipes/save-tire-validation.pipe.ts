@@ -5,9 +5,10 @@ import {
   DTO_SAVE_TIRE_TYPE_MSG,
 } from '../../message/message';
 
+//TODO: 배열 길이 5개 초과이면 validation처리 필요함.
 export class SaveTireValidationPipe implements PipeTransform {
   transform(value: any) {
-    if (!this.isArrayAndMin1Length(value))
+    if (!this.isArrayAndMin1LengthMaxLength5(value))
       throw new BadRequestException(DTO_SAVE_TIRE_ARRAY_MSG);
 
     if (!this.isIntact(value))
@@ -17,8 +18,9 @@ export class SaveTireValidationPipe implements PipeTransform {
       throw new BadRequestException(DTO_SAVE_TIRE_TYPE_MSG);
     return value;
   }
-  private isArrayAndMin1Length(value: any): boolean {
-    if (value instanceof Array && value.length > 0) return true;
+  private isArrayAndMin1LengthMaxLength5(value: any): boolean {
+    if (value instanceof Array && value.length > 0 && value.length <= 5)
+      return true;
     return false;
   }
 

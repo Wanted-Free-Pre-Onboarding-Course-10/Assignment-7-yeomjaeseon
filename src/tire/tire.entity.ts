@@ -1,10 +1,16 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { TireType } from './tire-type.enum';
 import { Trim } from '../trim/trim.entity';
 
 @Entity()
 export class Tire {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({ nullable: false })
@@ -16,9 +22,10 @@ export class Tire {
   @Column({ name: 'wheel_size', nullable: false })
   wheelSize: number;
 
-  @Column({ enum: TireType })
+  @Column({ enum: TireType, nullable: false })
   type: number;
 
   @ManyToOne((type) => Trim, (trim) => trim.tires)
+  @JoinColumn({ name: 'trim_id' })
   trim: Trim;
 }

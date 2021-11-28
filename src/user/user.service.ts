@@ -11,6 +11,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UserNotFoundException } from '../exception/user_not_found_exception';
 import { UserPwdIncorrectException } from '../exception/user_pwd_incorrect_exception';
 import { SIGNUP_SUCCESS_MSG } from '../message/message';
+import { SaveTireDto } from '../tire/dto/save.tire.dto';
 
 @Injectable()
 export class UserService {
@@ -41,7 +42,7 @@ export class UserService {
     const foundUser = await this.userRepository.findOne({ username });
 
     if (!foundUser) {
-      throw new UserNotFoundException();
+      throw new UserNotFoundException(username);
     }
 
     if (!(await bcrypt.compare(password, foundUser.password))) {

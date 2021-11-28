@@ -1,7 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { User } from './user.entity';
 import { InternalServerErrorException, Logger } from '@nestjs/common';
-import { UserDto } from './dto/user.dto';
 import { UserDuplicateException } from '../exception/user_duplicate_exception';
 
 @EntityRepository(User)

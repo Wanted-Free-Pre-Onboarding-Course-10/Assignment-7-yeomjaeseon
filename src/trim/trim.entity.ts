@@ -1,14 +1,17 @@
-import { Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { User } from '../user/user.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Tire } from '../tire/tire.entity';
+import { UserTrim } from '../user-trim/user-trim.entity';
 
 @Entity()
 export class Trim {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @ManyToOne((type) => User, (user) => user.trims)
-  user: User;
+  @Column({ name: 'trim_id', nullable: false, unique: true })
+  trimId: number;
+
+  @OneToMany((type) => UserTrim, (userTrim) => userTrim.trim, { eager: true })
+  userTrims: UserTrim[];
 
   @OneToMany((type) => Tire, (tire) => tire.trim, { eager: true })
   tires: Tire[];

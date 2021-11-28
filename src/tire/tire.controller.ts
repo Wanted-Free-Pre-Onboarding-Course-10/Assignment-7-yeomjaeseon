@@ -13,10 +13,11 @@ export class TireController {
 
   // == 타이어 정보 저장 == //
   @Post()
-  createTire(
+  async createTire(
     @Body(SaveTireValidationPipe) saveTireDtos: SaveTireDto[],
     @Req() req,
   ) {
     this.logger.debug(JSON.stringify(saveTireDtos));
+    await this.tireService.createTire(saveTireDtos);
   }
 }

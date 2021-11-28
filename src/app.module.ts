@@ -4,6 +4,7 @@ import { typeOrmConfig } from './config/ormconfig';
 import { UserModule } from './user/user.module';
 import { TireModule } from './tire/tire.module';
 import { TrimModule } from './trim/trim.module';
+import { UserTrimModule } from './user-trim/user-trim.module';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { TrimModule } from './trim/trim.module';
     UserModule,
     TireModule,
     TrimModule,
+    UserTrimModule,
   ],
   controllers: [],
   providers: [],

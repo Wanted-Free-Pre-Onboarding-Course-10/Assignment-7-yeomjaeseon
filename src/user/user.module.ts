@@ -23,6 +23,6 @@ config();
   ],
   providers: [UserService, JwtStrategy],
   controllers: [UserController],
-  exports: [JwtStrategy, PassportModule],
+  exports: [JwtStrategy, PassportModule, TypeOrmModule],
 })
 export class UserModule {}

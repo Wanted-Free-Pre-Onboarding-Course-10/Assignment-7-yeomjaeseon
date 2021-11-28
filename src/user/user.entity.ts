@@ -1,9 +1,9 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Trim } from '../trim/trim.entity';
+import { UserTrim } from '../user-trim/user-trim.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({ unique: true, nullable: false })
@@ -12,6 +12,6 @@ export class User {
   @Column({ name: 'password', nullable: false })
   password: string;
 
-  @OneToMany((type) => Trim, (trim) => trim.user, { eager: true })
-  trims: Trim[];
+  @OneToMany((type) => UserTrim, (userTrim) => userTrim.user, { eager: true })
+  userTrims: UserTrim[];
 }
