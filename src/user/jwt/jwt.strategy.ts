@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from '../user.repository';
 import { config } from 'dotenv';
 import { User } from '../user.entity';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { LoginNecessaryException } from '../../exception/login_necessary_exception';
 
 config();

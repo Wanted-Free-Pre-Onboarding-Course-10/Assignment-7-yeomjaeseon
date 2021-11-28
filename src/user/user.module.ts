@@ -15,14 +15,14 @@ config();
     TypeOrmModule.forFeature([UserRepository]),
     PassportModule.register({ defaultStrategy: 'jwt' }), //passport 기본전략 : jwt를 사용할것.
     JwtModule.register({
-      secret: process.env.JWT_SECRET, // 서버에서 유일하게 간직해야하는 secret - 요청온 jwt 토큰의 유효성을 위해
+      secret: process.env.JWT_SECRET,
       signOptions: {
-        expiresIn: process.env.JWT_EXPIRES, // 토큰의 만료 기간 (1시간)
+        expiresIn: process.env.JWT_EXPIRES,
       },
     }),
   ],
   providers: [UserService, JwtStrategy],
   controllers: [UserController],
-  exports: [JwtStrategy, PassportModule],
+  exports: [JwtStrategy, PassportModule, TypeOrmModule],
 })
 export class UserModule {}

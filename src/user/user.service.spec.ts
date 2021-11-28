@@ -132,7 +132,7 @@ describe('UserService', () => {
 
       //then
       await expect(service.login(userDto)).rejects.toThrow(
-        new UserNotFoundException(),
+        new UserNotFoundException(userDto.username),
       );
     });
     it('로그인 실패 - 비밀번호 틀림', async () => {

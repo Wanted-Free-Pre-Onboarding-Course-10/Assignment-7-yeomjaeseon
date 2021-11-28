@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
 import { UserService } from './user.service';
+import { SaveTireDto } from '../tire/dto/save.tire.dto';
 
 @Controller('user')
 @UsePipes(ValidationPipe)
