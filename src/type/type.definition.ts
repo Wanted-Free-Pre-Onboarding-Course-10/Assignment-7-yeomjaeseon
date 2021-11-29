@@ -10,3 +10,9 @@ export type EntireTireInfo = {
   frontTire: TireInfo;
   rearTire: TireInfo;
 };
+
+export type ResponseTireInfo = {
+  trimId: number;
+  frontTire: TireInfo;
+  rearTire: TireInfo;
+};

@@ -1,8 +1,18 @@
-import { Body, Controller, Logger, Post, Req, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Logger,
+  Param,
+  Post,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import { SaveTireDto } from './dto/save.tire.dto';
 import { TireService } from './tire.service';
 import { AuthGuard } from '@nestjs/passport';
 import { SaveTireValidationPipe } from './pipes/save-tire-validation.pipe';
+import { ResponseTireDto } from './dto/response.tire.dto';
 
 @Controller('tire')
 @UseGuards(AuthGuard())
@@ -16,8 +26,15 @@ export class TireController {
   async createTire(
     @Body(SaveTireValidationPipe) saveTireDtos: SaveTireDto[],
     @Req() req,
-  ) {
+  ): Promise<string> {
     this.logger.debug(JSON.stringify(saveTireDtos));
-    await this.tireService.createTire(saveTireDtos);
+    return await this.tireService.createTire(saveTireDtos);
+  }
+
+  // == 타이어 조회 == //
+  @Get()
+  async findMyTire(@Req() req): Promise<ResponseTireDto> {
+    this.logger.debug(req.user);
+    return await this.tireService.findTire(req.user);
   }
 }

@@ -10,7 +10,7 @@ export class Trim {
   @Column({ name: 'trim_id', nullable: false, unique: true })
   trimId: number;
 
-  @OneToMany((type) => UserTrim, (userTrim) => userTrim.trim, { eager: true })
+  @OneToMany((type) => UserTrim, (userTrim) => userTrim.trim)
   userTrims: UserTrim[];
 
   @OneToMany((type) => Tire, (tire) => tire.trim, { eager: true })
