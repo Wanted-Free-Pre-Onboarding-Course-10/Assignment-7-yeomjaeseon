@@ -29,12 +29,12 @@
 
 ## API
 [API문서](https://documenter.getpostman.com/view/18448217/UVJcjwMt)
+> 서버 주소 : 3.38.112.214:3000
 
 ## API 테스트
-1. 우측 링크를 클릭해서 postman으로 들어갑니다.[링크](https://web.postman.co/workspace/My-Workspace~9bdeda64-e679-40de-81a0-42c1c80bbf0a/collection/18448217-e8992032-d106-459c-add0-bf7ad3400551) 
-2. 정의된 server가 올바른지 확인 합니다.(13.125.79.160:3000)
-
-<img width="1059" alt="스크린샷 2021-11-22 오후 1 24 34" src="https://user-images.githubusercontent.com/81801012/142801119-449d758f-edd6-4fc6-b774-32fc2cbe76fd.png">
+1. 우측 링크를 클릭해서 postman으로 들어갑니다.[링크](https://go.postman.co/workspace/My-Workspace~9bdeda64-e679-40de-81a0-42c1c80bbf0a/collection/18448217-e8992032-d106-459c-add0-bf7ad3400551) 
+2. 정의된 server가 올바른지 확인 합니다.(3.38.112.214:3000)
+<img width="748" alt="스크린샷 2021-11-29 오전 11 22 21" src="https://user-images.githubusercontent.com/67785334/143798985-a1f9d3a1-9aac-4c9d-b8b7-8645901e6fa8.png">
 
 
 3. 이후, API 테스트를 시도해 주세요.
