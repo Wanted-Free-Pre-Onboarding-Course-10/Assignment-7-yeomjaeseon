@@ -32,7 +32,7 @@
 > 서버 주소 : 3.38.112.214:3000
 
 ## API 테스트
-1. 우측 링크를 클릭해서 postman으로 들어갑니다.[링크](https://go.postman.co/workspace/My-Workspace~9bdeda64-e679-40de-81a0-42c1c80bbf0a/collection/18448217-e8992032-d106-459c-add0-bf7ad3400551) 
+1. 우측 링크를 클릭해서 postman으로 들어갑니다.[링크](https://www.postman.com/navigation-operator-10694267/workspace/workspace/overview) 
 2. 정의된 server가 올바른지 확인 합니다.(3.38.112.214:3000)
 <img width="782" alt="스크린샷 2021-11-29 오전 11 26 30" src="https://user-images.githubusercontent.com/67785334/143799299-19e40f57-83c5-4696-93f4-2bc8a34e20da.png">
 
