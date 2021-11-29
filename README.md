@@ -38,6 +38,11 @@
 
 
 3. 이후, API 테스트를 시도해 주세요.
+4. 만일 send버튼이 아래와 같이 비활성화되어 있을시 fork하여 테스트 해주시기 바랍니다.
+<img width="473" alt="스크린샷 2021-11-29 오전 11 47 23" src="https://user-images.githubusercontent.com/67785334/143800886-5079c810-8c60-4c45-a3b2-1d89c726d3b4.png">
+5. 타이어 저장과 조회는 인증이 필요하기에 테스트하기 위해선 아래 그림과 같이 Authorization 탭에 가서 Bearer Token을 선택해  로그인 성공 응답인 토큰을 입력하고 api실행하시면 됩니다.
+<img width="1013" alt="스크린샷 2021-11-29 오전 11 48 50" src="https://user-images.githubusercontent.com/67785334/143801172-b5383816-d8c7-4f73-aa44-fa153fcc49df.png">
+
 
 ## 설치 및 실행 방법
 
