@@ -49,11 +49,13 @@ git clone https://github.com/Wanted-Free-Pre-Onboarding-Course-10/Assignment-7-y
 
  ### 환경 구축 및 실행
 ```
-//.env파일 존재해야 실행가능합니다.
 npm install
 
 npm run start
 ```
+**.env파일 존재해야 로컬에서 실행가능합니다.**
+
+- [env notion link](https://giant-warlock-7c1.notion.site/env-80191af806cb447abdb6fece2a84d02a)
 
 ## 팀원
 
