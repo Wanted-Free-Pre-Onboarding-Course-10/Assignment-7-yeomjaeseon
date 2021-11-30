@@ -95,4 +95,4 @@ npm run start
 - tire서비스는 user repository, tire repository, trim repository, user-trim repository를 의존한다.
 
 ## 회고내용 블로그 링크
-[회고록]()
+[회고록](https://yjs3819.tistory.com/73)
