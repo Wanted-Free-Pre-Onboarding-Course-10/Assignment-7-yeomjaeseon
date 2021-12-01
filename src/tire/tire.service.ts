@@ -22,6 +22,8 @@ import { ResponseTireDto } from './dto/response.tire.dto';
 @Injectable()
 export class TireService {
   private logger = new Logger('TireService');
+  private CARDAC_API_URL = (trimId: number) =>
+    `https://dev.mycar.cardoc.co.kr/v1/trim/${trimId}`;
 
   constructor(
     @InjectRepository(TireRepository)
@@ -108,6 +110,7 @@ export class TireService {
     return this.makeResponseDto(user.username, datas);
   }
 
+  // == private methods == //
   // == reponse dto 만드는 메서드 == //
   private makeResponseDto(
     username: string,
@@ -126,7 +129,7 @@ export class TireService {
     let trimInfo;
     try {
       trimInfo = await this.httpService
-        .get(`https://dev.mycar.cardoc.co.kr/v1/trim/${trimId}`)
+        .get(this.CARDAC_API_URL(trimId))
         .toPromise();
     } catch (error) {
       this.logger.error(error);
@@ -154,17 +157,23 @@ export class TireService {
       wheelSize: parseInt(splitResult[2]),
     };
 
-    const { width, aspectRatio, wheelSize } = tireInfo;
-
-    // 타이어 데이터 형식이 정상이 아님
-    if (!width || !aspectRatio || !wheelSize) {
+    if (!this.isRightTireDataFormat(tireInfo))
       throw new NotNormalTireDataException(trimId);
-    }
 
     return {
-      width,
-      aspectRatio,
-      wheelSize,
+      width: tireInfo.width,
+      aspectRatio: tireInfo.aspectRatio,
+      wheelSize: tireInfo.wheelSize,
     };
+  }
+
+  // == tire 데이터 포멧 적절한지 확인 메서드 == //
+  private isRightTireDataFormat(tireInfo: TireInfo): boolean {
+    const { width, aspectRatio, wheelSize } = tireInfo;
+
+    if (!width || !aspectRatio || !wheelSize) {
+      return false;
+    }
+    return true;
   }
 }
