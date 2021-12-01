@@ -3,7 +3,6 @@ import {
   Controller,
   Get,
   Logger,
-  Param,
   Post,
   Req,
   UseGuards,
